@@ -1,17 +1,22 @@
-server:
-  port: 8082
+server.port: 8082
 spring:
-  application:
-    name: api-gateway
-  cloud:
-    gateway:
-      discovery:
-        locator:
+  application.name: api-gateway
+  cloud.gateway:
+      discovery.locator:
           enabled: true
           lower-case-service-id: true
+      routes:
+        - id: account-status
+          uri: lb://account-manager-ws
+          predicates:
+            - Path=/account-ws/account/status/check
+            - Method=GET
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/account-ws/(?<path>.*), /$\{path}
+logging.level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
 eureka:
-  instance:
-    preferIpAddress: true
-  client:
-    service:
-      defaultZone: http://localhost:8010/eureka
+  instance.preferIpAddress: true
+  client.service.defaultZone: http://localhost:8010/eureka
