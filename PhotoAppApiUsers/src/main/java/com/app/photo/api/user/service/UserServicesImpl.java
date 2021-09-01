@@ -13,9 +13,9 @@ import java.util.UUID;
 @Service
 public class UserServicesImpl implements UserServices {
 
-    private UserRepository repository;
+    private final UserRepository repository;
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @Autowired
     public UserServicesImpl(UserRepository repository, ModelMapper modelMapper) {
@@ -29,11 +29,10 @@ public class UserServicesImpl implements UserServices {
         dto.setEncryptedPassword("123456");
 
         UserEntity userEntity = modelMapper.map(dto, UserEntity.class);
-
-        System.out.println(">>>>>>>>>>>>>>userEntity"+ userEntity.toString());
         repository.save(userEntity);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>userEntity" + userEntity.toString());
 
-        return dto;
+        return modelMapper.map(userEntity, UserDto.class);
     }
 
 }

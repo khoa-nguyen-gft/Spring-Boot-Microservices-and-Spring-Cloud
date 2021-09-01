@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateUserRequestModel {
+public class AddUserRequestModel {
     @NotNull(message = "The fist name cannot be null")
     @Size(min = 5, message = "the first name must not be less than 5 characters")
     private String fistName;

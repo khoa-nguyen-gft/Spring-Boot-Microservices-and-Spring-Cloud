@@ -1,12 +1,15 @@
 package com.app.photo.api.user.controller;
 
 
-import com.app.photo.api.user.model.CreateUserRequestModel;
+import com.app.photo.api.user.model.AddUserRequestModel;
+import com.app.photo.api.user.model.AddUserResponseModel;
 import com.app.photo.api.user.service.UserServices;
 import com.app.photo.api.user.shared.UserDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -36,15 +39,16 @@ public class UserController {
 
 
     @PostMapping
-    public String createUser(@Valid @RequestBody CreateUserRequestModel request) {
+    public ResponseEntity<AddUserResponseModel> createUser(@Valid @RequestBody AddUserRequestModel request) {
 
-        UserDto userDto = modelMapper.map(request, UserDto.class);
+        UserDto userDtoRequest = modelMapper.map(request, UserDto.class);
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>userDto" + userDto.toString());
+        UserDto userDtoResponse = userServices.addUser(userDtoRequest);
 
-        userServices.addUser(userDto);
+        AddUserResponseModel addUserResponseModel = modelMapper.map(userDtoResponse, AddUserResponseModel.class);
 
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>addUserResponseModel" + addUserResponseModel.toString());
 
-        return "create user method is call";
+        return ResponseEntity.status(HttpStatus.CREATED).body(addUserResponseModel);
     }
 }

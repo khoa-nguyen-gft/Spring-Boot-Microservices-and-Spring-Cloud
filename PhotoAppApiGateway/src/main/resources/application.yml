@@ -14,6 +14,15 @@ spring:
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/account-ws/(?<path>.*), /$\{path}
+
+        - id: user-status
+          uri: lb://user-ws
+          predicates:
+            - Path=/user-ws/users/status/check
+            - Method=GET
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-ws/(?<path>.*) , /$\{path}
 logging.level:
     org.springframework.cloud.gateway: DEBUG
     reactor.netty.http.client: DEBUG
