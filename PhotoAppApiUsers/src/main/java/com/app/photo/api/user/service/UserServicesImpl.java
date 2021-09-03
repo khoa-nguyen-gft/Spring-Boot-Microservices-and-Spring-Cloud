@@ -6,10 +6,14 @@ import com.app.photo.api.user.data.UserRepository;
 import com.app.photo.api.user.shared.UserDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 @Service
@@ -40,4 +44,24 @@ public class UserServicesImpl implements UserServices {
         return modelMapper.map(userEntity, UserDto.class);
     }
 
+    @Override
+    public UserDto getByEmail(String email) {
+        UserEntity entity = repository.findByEmail(email);
+
+        if(entity == null) {
+            throw new UsernameNotFoundException(email);
+        }
+
+        return modelMapper.map(entity, UserDto.class);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        UserEntity entity = repository.findByEmail(email);
+
+        if(entity == null) {
+            throw new UsernameNotFoundException(email);
+        }
+        return new User(entity.getEmail(), entity.getEncryptedPassword(), true, true, true, true, new ArrayList<>());
+    }
 }
