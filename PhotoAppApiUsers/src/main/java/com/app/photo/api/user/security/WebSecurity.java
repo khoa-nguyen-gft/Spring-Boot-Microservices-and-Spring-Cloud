@@ -56,7 +56,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
         AuthenticationFilter authenticationFilter = new AuthenticationFilter(authenticationManager(), environment, userServices);
 
-        authenticationFilter.setFilterProcessesUrl(environment.getProperty("app.config.security-url"));
+//        authenticationFilter.setFilterProcessesUrl(environment.getProperty("app.config.security-url"));
         return authenticationFilter;
 
     }

@@ -4,8 +4,57 @@ spring:
   cloud.gateway:
       discovery.locator:
           enabled: true
-          lower-case-service-id: true
+#          lower-case-service-id: true
       routes:
+        ##############################
+        # users-ws
+        ##############################
+        - id: users-status
+          uri: lb://users-ws
+          predicates:
+            - Path=/users-ws/users/status/check
+            - Method=GET
+            - Header=Authorization, Bearer (.*)
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/users-ws/(?<path>.*) , /$\{path}
+            - AuthenticationHeaderFilter
+
+
+        - id: add-users
+          uri: lb://users-ws
+          predicates:
+            - Path=/users-ws/users
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/users-ws/(?<path>.*) , /$\{path}
+
+
+        - id: login-users
+          uri: lb://users-ws
+          predicates:
+#            - Path=/users-ws/users/login
+            - Path=/users-ws/login
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/users-ws/(?<path>.*) , /$\{path}
+
+
+        - id: update-delete-users
+          uri: lb://users-ws
+          predicates:
+            - Path=/users-ws/users
+            - Method=GET, DELETE, PUT
+            - Header=Authorization, Bearer (.*)
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/users-ws/(?<path>.*) , /$\{path}
+            - AuthenticationHeaderFilter
+        ##############################
+        # account-ws
+        ##############################
         - id: account-status
           uri: lb://account-manager-ws
           predicates:
@@ -15,17 +64,12 @@ spring:
             - RemoveRequestHeader=Cookie
             - RewritePath=/account-ws/(?<path>.*), /$\{path}
 
-        - id: user-status
-          uri: lb://user-ws
-          predicates:
-            - Path=/user-ws/users/status/check
-            - Method=GET
-          filters:
-            - RemoveRequestHeader=Cookie
-            - RewritePath=/user-ws/(?<path>.*) , /$\{path}
 logging.level:
     org.springframework.cloud.gateway: DEBUG
     reactor.netty.http.client: DEBUG
 eureka:
   instance.preferIpAddress: true
   client.service.defaultZone: http://localhost:8010/eureka
+
+token:
+  secret: j3F##@F$@@FSFEGRETE
