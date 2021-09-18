@@ -32,5 +32,5 @@ app.config:
     security-url: users/login
 
 
-sping.config:
-  import: "optional:configserver:http://localhost:8012"
+#sping.config:
+#  import: "optional:configserver:http://localhost:8012"
