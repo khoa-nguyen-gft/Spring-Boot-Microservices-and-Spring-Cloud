@@ -46,16 +46,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userServices).passwordEncoder(bCryptPasswordEncoder);
-
-
-
         super.configure(auth);
     }
 
     private AuthenticationFilter getAuthenitcationfilter() throws Exception {
-
         AuthenticationFilter authenticationFilter = new AuthenticationFilter(authenticationManager(), environment, userServices);
-
 //        authenticationFilter.setFilterProcessesUrl(environment.getProperty("app.config.security-url"));
         return authenticationFilter;
 

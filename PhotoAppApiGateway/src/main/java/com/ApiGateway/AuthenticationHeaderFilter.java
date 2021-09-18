@@ -1,8 +1,5 @@
-package com.zuulApiGateway;
+package com.ApiGateway;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Header;
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -44,15 +41,12 @@ public class AuthenticationHeaderFilter extends AbstractGatewayFilterFactory {
             if(!request.getHeaders().containsKey(constraints.AUTHORIZATION)) {
                 return onError(exchange, "No authorization header", HttpStatus.UNAUTHORIZED);
             }
-
             String authorization = request.getHeaders().get(constraints.AUTHORIZATION).get(0);
 
             String jwt = authorization.replaceAll(constraints.BEARER , "").replaceAll(" ", "");
 
-
             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>jwt: " + jwt);
             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>environment.getProperty(\"token.secret\"): " + environment.getProperty("token.secret"));
-
 
             if(!validateJwt(jwt)){
                 return onError(exchange, "The JWT is not valid", HttpStatus.UNAUTHORIZED);

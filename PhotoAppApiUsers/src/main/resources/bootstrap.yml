@@ -1,0 +1,5 @@
+spring.cloud.config:
+ enabled: true
+ uri: http://localhost:8012
+ name: users-ws
+ import-check.enabled: false

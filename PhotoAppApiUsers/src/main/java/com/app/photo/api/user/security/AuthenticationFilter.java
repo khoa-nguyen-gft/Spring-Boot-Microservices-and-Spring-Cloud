@@ -61,6 +61,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         UserDto userDto = userServices.getByEmail(email);
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>userDto: " + userDto.toString());
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>email: " + email );
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>environment.getProperty(\"token.expiration\"): " + environment.getProperty("token.expiration") );
 
         String token = Jwts.builder()
                 .setSubject(userDto.getUserId())
@@ -69,9 +70,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 .signWith(SignatureAlgorithm.HS512, environment.getProperty("token.secret"))
                 .compact();
 
-
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>token: " + token );
-
 
         response.setHeader("token", token);
         response.setHeader("userId", userDto.getUserId());

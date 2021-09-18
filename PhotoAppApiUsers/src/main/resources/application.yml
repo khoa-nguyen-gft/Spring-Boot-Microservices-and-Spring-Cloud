@@ -1,5 +1,5 @@
-server:
-  port: 8088
+server.port: 8088
+spring.application.name: users-ws
 
 eureka:
   client.serviceUrl.defaultZone: http://localhost:8761/eureka
@@ -9,23 +9,28 @@ eureka:
 
 
 spring:
-  application.name: users-ws
   devtools.restart.enabled: true
   jpa.database-platform: org.hibernate.dialect.H2Dialect
-  h2.console:
+
+spring.h2.console:
     enabled: true
     settings.web-allow-others: true
-  datasource:
-    url: jdbc:h2:mem:testdb
-    driverClassName: org.h2.Driver
-    username: sa
-    password: password
+
+spring.datasource:
+  url: jdbc:h2:mem:testdb
+  driverClassName: org.h2.Driver
+  username: sa
+  password: password
 
 api-gateway.ip: 169.254.58.236
-
 token:
   expiration: 864000000
   secret: j3F##@F$@@FSFEGRETE
-app:
-  config:
+
+
+app.config:
     security-url: users/login
+
+
+sping.config:
+  import: "optional:configserver:http://localhost:8012"
