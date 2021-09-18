@@ -2,5 +2,5 @@
 spring.cloud.config:
 # enabled: true
  uri: http://localhost:8012
- name: users-ws
+ name: app-dev
 # import-check.enabled: false

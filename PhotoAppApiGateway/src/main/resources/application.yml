@@ -14,7 +14,8 @@ spring:
           predicates:
             - Path=/users-ws/users/status/check
             - Method=GET
-            - Header=Authorization, Bearer (.*)
+#            - TODO: remove to validate in Authentication header
+#            - Header=Authorization, Bearer (.*)
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/users-ws/(?<path>.*) , /$\{path}
