@@ -74,3 +74,9 @@ eureka:
 
 token:
   secret: j3F##@F$@@FSFEGRETE
+
+spring.rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest

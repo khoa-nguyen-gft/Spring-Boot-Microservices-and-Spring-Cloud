@@ -34,3 +34,10 @@ app.config:
 
 #sping.config:
 #  import: "optional:configserver:http://localhost:8012"
+
+
+spring.rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
