@@ -33,6 +33,7 @@ public class AuthenticationHeaderFilter extends AbstractGatewayFilterFactory {
 
     @Override
     public GatewayFilter apply(Object config) {
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>GatewayFilter" + config.toString());
 
         return (exchange, chain) -> {
             ServerHttpRequest request = exchange.getRequest();
@@ -57,6 +58,9 @@ public class AuthenticationHeaderFilter extends AbstractGatewayFilterFactory {
     }
 
     private boolean validateJwt(String jwt) {
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>validateJwt");
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>validateJwt: environment.getProperty(\"token.secret\")" + environment.getProperty("token.secret"));
+
         String subject = null;
         try{
             subject = Jwts.parser()

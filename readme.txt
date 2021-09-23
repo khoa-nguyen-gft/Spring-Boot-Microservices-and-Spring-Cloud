@@ -14,3 +14,11 @@ http://localhost:8012/actuator/busrefresh
 
 
 https://github.com/npdangkhoa/PhotoAppApiConfiguration.git
+
+
+#BUG will fix late
+   + rename path spring cloud user   
+   + spring cloud bug integrate with spring cloud    DONE
+      fixed by add 
+        + spring-cloud-starter-config
+  
