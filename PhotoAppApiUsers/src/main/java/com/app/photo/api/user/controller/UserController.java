@@ -35,7 +35,8 @@ public class UserController {
     @GetMapping("/status/check")
     public String status() {
         return "Working on the port: " + env.getProperty("local.server.port")  +
-                " token: " + env.getProperty("token.secret");
+                " token: " + env.getProperty("token.secret") +
+                " database " + env.getProperty("spring.jpa.database-platform");
     }
 
 

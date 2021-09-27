@@ -1,6 +1,3 @@
-#spring.application.name: users-ws
 spring.cloud.config:
-# enabled: true
  uri: http://localhost:8012
- name: app-dev
-# import-check.enabled: false
+ name: users-ws

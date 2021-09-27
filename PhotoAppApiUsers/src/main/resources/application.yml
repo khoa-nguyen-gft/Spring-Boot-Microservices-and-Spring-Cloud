@@ -19,20 +19,20 @@ spring.h2.console:
     settings.web-allow-others: true
 
 #H2 database
-#spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
-#spring.datasource:
-#    url: jdbc:h2:mem:testdb
-#    driverClassName: org.h2.Driver
-#    username: sa
-#    password: password
-
-#Mysql
-spring.jpa.database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
 spring.datasource:
-  driverClassName: com.mysql.jdbc.Driver
-  url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db
-  username: user
-  password: root
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+
+#Mysql: this config move to config server
+#spring.jpa.database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#spring.datasource:
+#  driverClassName: com.mysql.jdbc.Driver
+#  url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db
+#  username: user
+#  password: root
 
 
 api-gateway.ip: 169.254.58.236
