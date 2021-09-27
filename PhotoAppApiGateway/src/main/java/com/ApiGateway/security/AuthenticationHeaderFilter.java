@@ -1,4 +1,4 @@
-package com.ApiGateway;
+package com.ApiGateway.security;
 
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;

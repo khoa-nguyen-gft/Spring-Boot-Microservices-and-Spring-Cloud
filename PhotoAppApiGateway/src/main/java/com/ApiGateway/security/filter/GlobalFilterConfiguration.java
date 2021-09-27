@@ -1,4 +1,4 @@
-package com.ApiGateway.filter;
+package com.ApiGateway.security.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

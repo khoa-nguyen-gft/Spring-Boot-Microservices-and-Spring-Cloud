@@ -1,0 +1,20 @@
+# guild to setup       
+#https://collabnix.com/running-redisinsight-using-docker-compose/
+#ipconfig
+#  192.168.1.7
+version: '3'
+services:
+  redis:
+    image: redislabs/redismod
+    container_name: redis
+    ports:
+      - 6379:6379
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    container_name: redisinsight
+    ports:
+      - '8001:8001'
+    depends_on:
+      - redis
+    volumes:
+      - ./temp/redis/Users/ajeetraina/data/redisinsight:/db 

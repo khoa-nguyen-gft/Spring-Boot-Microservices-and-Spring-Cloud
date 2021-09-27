@@ -1,0 +1,47 @@
+#https://viblo.asia/p/tich-hop-elasticsearch-va-kibana-vao-docker-compose-Az45bymqlxY
+version: "3.0"
+services:
+  elasticsearch:
+    container_name: es-container
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.4
+    environment:
+      - xpack.security.enabled=false
+      - "discovery.type=single-node"
+    networks:
+      - es-net
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - ./temp/elasticsearch/logs:/var/log
+      - ./temp/elasticsearch/esdata:/usr/share/elasticsearch/data
+  enterprisesearch:
+    image: docker.elastic.co/enterprise-search/enterprise-search:7.13.4
+    environment:
+      - "elasticsearch.host=http://es-container:9200"
+      - "ent_search.auth.default.source=standard"
+      - "elasticsearch.username=elastic"
+      - "elasticsearch.password=password"
+      - "secret_management.encryption_keys=[ec6b6aaa5e6957e9b7619cd9f1278ebddbdfea0f78f533e630d262dc3029511c]"
+      - "allow_es_settings_modification=true"
+      - "JAVA_OPTS=-Xms2g -Xmx2g"
+      - "ENT_SEARCH_DEFAULT_PASSWORD=changeme"
+    ports:
+      - 3002:3002
+    depends_on: ['elasticsearch']
+  kibana:
+    container_name: kb-container
+    image: docker.elastic.co/kibana/kibana:7.13.4
+    environment:
+      - ELASTICSEARCH_HOSTS=http://es-container:9200
+    networks:
+      - es-net
+    depends_on:
+      - elasticsearch
+    ports:
+      - 5601:5601
+    volumes:
+      - ./temp/kibana/logs:/var/log
+networks:
+  es-net:
+    driver: bridge
