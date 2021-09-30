@@ -10,12 +10,14 @@
         <module name="PhotoAppApiConfigServer" />
         <module name="PhotoAppApiAccountManager" />
         <module name="PhotoAppDiscoveryServer" />
+        <module name="PhotoAppApiAlbums" />
         <module name="PhotoAppApiUsers" />
         <module name="PhotoAppApiGateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="PhotoAppApiAccountManager" target="1.8" />
+      <module name="PhotoAppApiAlbums" target="1.8" />
       <module name="PhotoAppApiConfigServer" target="1.8" />
       <module name="PhotoAppApiGateway" target="11" />
       <module name="PhotoAppApiUsers" target="1.8" />

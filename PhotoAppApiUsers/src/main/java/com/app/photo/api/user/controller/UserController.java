@@ -3,12 +3,14 @@ package com.app.photo.api.user.controller;
 
 import com.app.photo.api.user.model.AddUserRequestModel;
 import com.app.photo.api.user.model.AddUserResponseModel;
+import com.app.photo.api.user.model.GetUserResponseModel;
 import com.app.photo.api.user.service.UserServices;
 import com.app.photo.api.user.shared.UserDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,15 +24,14 @@ public class UserController {
 
     private ModelMapper modelMapper;
 
+    @Autowired
+    private Environment env;
 
     @Autowired
     public UserController(UserServices userServices, ModelMapper modelMapper) {
         this.userServices = userServices;
         this.modelMapper = modelMapper;
     }
-
-    @Autowired
-    private Environment env;
 
     @GetMapping("/status/check")
     public String status() {
@@ -44,7 +45,6 @@ public class UserController {
     public ResponseEntity<AddUserResponseModel> createUser(@Valid @RequestBody AddUserRequestModel request) {
 
         UserDto userDtoRequest = modelMapper.map(request, UserDto.class);
-
         UserDto userDtoResponse = userServices.addUser(userDtoRequest);
 
         AddUserResponseModel addUserResponseModel = modelMapper.map(userDtoResponse, AddUserResponseModel.class);
@@ -52,5 +52,12 @@ public class UserController {
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>addUserResponseModel" + addUserResponseModel.toString());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(addUserResponseModel);
+    }
+
+    @GetMapping(value = "/{id}",
+        produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
+    public ResponseEntity<GetUserResponseModel> getUserById(@PathVariable("useId") String userId){
+    return null;
     }
 }
