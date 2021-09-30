@@ -21,4 +21,8 @@ https://github.com/npdangkhoa/PhotoAppApiConfiguration.git
    + spring cloud bug integrate with spring cloud    DONE
       fixed by add 
         + spring-cloud-starter-config
+        
+        
+        
+        
   
