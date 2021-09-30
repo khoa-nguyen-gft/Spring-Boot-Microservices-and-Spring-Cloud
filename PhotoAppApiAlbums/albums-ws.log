@@ -1,0 +1,16 @@
+2021-09-30 16:30:28.374  INFO 29800 --- [main] .a.a.P.PhotoAppApiAlbumsApplicationTests : No active profile set, falling back to default profiles: default
+2021-09-30 16:30:31.308  WARN 29800 --- [main] o.s.boot.actuate.endpoint.EndpointId     : Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+2021-09-30 16:30:32.133  INFO 29800 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=6d4a1a54-5a2a-3f05-a011-f398b3ca3347
+2021-09-30 16:30:33.072  INFO 29800 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$c340ea7a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-09-30 16:30:34.214  WARN 29800 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2021-09-30 16:30:34.215  INFO 29800 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-09-30 16:30:34.237  WARN 29800 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2021-09-30 16:30:34.240  INFO 29800 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-09-30 16:30:36.151  INFO 29800 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-09-30 16:30:46.788  INFO 29800 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2021-09-30 16:30:58.207  INFO 29800 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2021-09-30 16:30:58.848  INFO 29800 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-09-30 16:30:59.094  INFO 29800 --- [main] .a.a.P.PhotoAppApiAlbumsApplicationTests : Started PhotoAppApiAlbumsApplicationTests in 52.151 seconds (JVM running for 55.653)
+2021-09-30 16:31:00.804  INFO 29800 --- [Thread-7] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2021-09-30 16:31:00.816  INFO 29800 --- [Thread-7] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application ALBUMS-WS with eureka with status DOWN
+2021-09-30 16:31:00.838  INFO 29800 --- [Thread-7] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

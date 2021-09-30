@@ -28,6 +28,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="PhotoAppApiAccountManager" options="-parameters" />
+      <module name="PhotoAppApiAlbums" options="-parameters" />
       <module name="PhotoAppApiConfigServer" options="-parameters" />
       <module name="PhotoAppApiGateway" options="-parameters" />
       <module name="PhotoAppApiUsers" options="-parameters" />
