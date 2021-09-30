@@ -45,6 +45,16 @@ spring.cloud.gateway:
         - RemoveRequestHeader=Cookie
         - RewritePath=/users-ws/(?<path>.*) , /$\{path}
         - AuthenticationHeaderFilter
+    - id: get-user-by-id
+      uri: lb://users-ws
+      predicates:
+        - Path=/users-ws/users/**
+        - Method=GET
+        - Header=Authorization, Bearer (.*)
+      filters:
+        - RemoveRequestHeader=Cookie
+        - RewritePath=/users-ws/(?<path>.*) , /$\{path}
+        - AuthenticationHeaderFilter
     ##############################
     # account-ws
     ##############################

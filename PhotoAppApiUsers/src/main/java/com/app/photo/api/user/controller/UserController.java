@@ -54,10 +54,12 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(addUserResponseModel);
     }
 
-    @GetMapping(value = "/{id}",
+    @GetMapping(value = "/{userId}",
         produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public ResponseEntity<GetUserResponseModel> getUserById(@PathVariable("useId") String userId){
-    return null;
+    public ResponseEntity<GetUserResponseModel> getUserById(@PathVariable("userId") String userId){
+        UserDto userDto = userServices.getUserById(userId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }
