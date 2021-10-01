@@ -46,10 +46,7 @@ public class UserController {
 
         UserDto userDtoRequest = modelMapper.map(request, UserDto.class);
         UserDto userDtoResponse = userServices.addUser(userDtoRequest);
-
         AddUserResponseModel addUserResponseModel = modelMapper.map(userDtoResponse, AddUserResponseModel.class);
-
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>addUserResponseModel" + addUserResponseModel.toString());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(addUserResponseModel);
     }
@@ -59,7 +56,8 @@ public class UserController {
     )
     public ResponseEntity<GetUserResponseModel> getUserById(@PathVariable("userId") String userId){
         UserDto userDto = userServices.getUserById(userId);
+        GetUserResponseModel getUserResponseModel = modelMapper.map(userDto, GetUserResponseModel.class);
 
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.status(HttpStatus.OK).body(getUserResponseModel);
     }
 }

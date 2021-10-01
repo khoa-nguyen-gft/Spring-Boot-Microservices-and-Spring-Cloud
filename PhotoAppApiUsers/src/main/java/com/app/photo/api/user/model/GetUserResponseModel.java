@@ -15,5 +15,5 @@ public class GetUserResponseModel {
     private String fistName;
     private String lastName;
     private String email;
-    private List<AlbumResponseModel> listAlbums;
+    private List<AlbumResponseModel> albums;
 }
