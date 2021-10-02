@@ -57,3 +57,6 @@ spring.rabbitmq:
 
 #albums:
 #  getAllAlbumsByUserId: "http://ALBUMS-WS/users/%s/albums"
+
+logging.level:
+  com.app.photo.api.user.data.AlbumsServiceClient: DEBUG
