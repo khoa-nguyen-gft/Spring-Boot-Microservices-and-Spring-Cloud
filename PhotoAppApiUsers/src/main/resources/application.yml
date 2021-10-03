@@ -60,3 +60,11 @@ spring.rabbitmq:
 
 logging.level:
   com.app.photo.api.user.data.AlbumsServiceClient: DEBUG
+
+
+#feign.hystrix.enabled: true
+feign:
+  hystrix:
+    enabled: true
+  circuitbreaker:
+    enabled: true
