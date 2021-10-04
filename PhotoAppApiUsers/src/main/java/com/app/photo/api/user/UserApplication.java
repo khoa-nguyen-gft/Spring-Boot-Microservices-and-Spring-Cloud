@@ -1,6 +1,7 @@
 package com.app.photo.api.user;
 
 //import com.app.photo.api.user.exceptions.CustomErrorDecoder;
+import brave.sampler.Sampler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.Logger;
 import feign.codec.ErrorDecoder;
@@ -22,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableEurekaClient
 @EnableFeignClients
 @EnableHystrix
-@EnableCircuitBreaker
+//@EnableCircuitBreaker
 public class UserApplication {
 
 	@Bean
@@ -52,6 +53,12 @@ public class UserApplication {
 //	ErrorDecoder errorDecoder(){
 //		return new CustomErrorDecoder();
 //	}
+
+
+	@Bean
+	public Sampler defaultSampler() {
+		return Sampler.ALWAYS_SAMPLE;
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(UserApplication.class, args);

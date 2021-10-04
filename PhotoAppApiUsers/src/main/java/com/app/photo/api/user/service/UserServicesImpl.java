@@ -8,6 +8,8 @@ import com.app.photo.api.user.model.AlbumResponseModel;
 import com.app.photo.api.user.model.GetUserResponseModel;
 import com.app.photo.api.user.shared.UserDto;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
@@ -29,6 +31,7 @@ import java.util.UUID;
 @Service
 public class UserServicesImpl implements UserServices {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final UserRepository repository;
 
     private final ModelMapper modelMapper;
@@ -102,7 +105,9 @@ public class UserServicesImpl implements UserServices {
 //
 //        List<AlbumResponseModel> listAlbums = listAlbumResponse.getBody();
 
+        logger.info(">> Begin call getAllAlbumsByUserId");
         userDto.setAlbums(albumsServiceClient.getAllAlbumsByUserId(userDto.getUserId()));
+        logger.info(">> End call getAllAlbumsByUserId");
 
         System.out.println(">>>>>>>>>>>>>" + userDto.toString());
 
